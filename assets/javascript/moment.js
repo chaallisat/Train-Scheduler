@@ -23,22 +23,24 @@
   let tFrequency = 3;
   let firstTime = "03:30";
 
-//    * Train Name
-    
-//    * Destination 
-    
-//    * First Train Time -- in military time
-    
-//    * Frequency -- in minutes
+  //Show on page
   
-//  * Code this app to calculate when the next train will arrive; this should be relative to the current time.
+  //    * Train Name
   
-//  * Users from many different machines must be able to view same train times.
-
-
-    // First Time (pushed back 1 year to make sure it comes before current time)
-    let firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
-    console.log(firstTimeConverted);
+  //    * Destination 
+  
+  //    * First Train Time -- in military time
+  
+  //    * Frequency -- in minutes
+  
+  //  * Code this app to calculate when the next train will arrive; this should be relative to the current time.
+  
+  //  * Users from many different machines must be able to view same train times.
+  
+  
+  // First Time (pushed back 1 year to make sure it comes before current time)
+  let firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+  console.log(firstTimeConverted);
 
     // Current Time
     let currentTime = moment();
@@ -59,3 +61,11 @@
     // Next Train
     let nextTrain = moment().add(tMinutesTillTrain, "minutes");
     console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+
+
+    
+    $(".tName").append(tName);
+    $(".tDestination").append(destination);
+    $(".tfrequency").append(tFrequency);
+    $(".next-arrival").append(nextTrain);
+    $(".minutes-away").append(tMinutesTillTrain);
