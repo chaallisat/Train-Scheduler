@@ -65,7 +65,7 @@
 
     
     $(".tName").append(tName);
-    $(".tDestination").append(destination);
+    $(".tdestination").append(destination);
     $(".tfrequency").append(tFrequency);
     $(".next-arrival").append(nextTrain);
     $(".minutes-away").append(tMinutesTillTrain);
