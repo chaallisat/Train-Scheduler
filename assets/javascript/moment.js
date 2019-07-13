@@ -19,10 +19,59 @@
 
   // Initial Variables
   let tName = "Hogwarts Express";
-  let destination = "Hogwarts";
+  let tDestination = "Hogwarts";
   let tFrequency = 3;
   let firstTime = "03:30";
 
+  
+  $("#add-train").on("click", function(event) {
+    event.preventDefault();
+    // Get the input values
+    const trainName = $("#train-name").val().trim();
+    const trainDestination = $("#destination").val().trim();
+    const firstTrainTime = parseInt($("#first-train").val().trim());
+    const trainFrequency = $("#frequency").val().trim();
+
+    const newTrain = {
+      name: trainName,
+      destination: trainDestination,
+      trainTime: firstTrainTime,
+      frequency: trainFrequency
+    };
+
+    database.ref().push(newTrain);
+
+
+
+
+    alert("New Train Added");
+    $("#train-name").val("");
+    $("#destination").val("");
+    $("#first-train").val("");
+    $("#frequency").val("");
+    
+
+  });
+
+  database.ref().on("child_added", function(childSnapshot) {
+    console.log(childSnapshot.val());
+
+    const trainName = childSnapshot.val().name;
+    const trainDestination = childSnapshot.val().destination;
+    const firstTrainTime = childSnapshot.val().trainTime;
+    const trainFrequency = childSnapshot.val().frequency;
+
+    let newRow = $("<tr>").append(
+      $("<td>").text(trainName),
+      $("<td>").text(trainDestination),
+      $("<td>").text(firstTrainTime),
+      $("<td>").text(trainFrequency),
+    );
+
+    $("#train-table > tbody").append(newRow);
+
+  });
+    
   //Show on page
   
   //    * Train Name
@@ -64,8 +113,4 @@
 
 
     
-    $(".tName").append(tName);
-    $(".tdestination").append(destination);
-    $(".tfrequency").append(tFrequency);
-    $(".next-arrival").append(nextTrain);
-    $(".minutes-away").append(tMinutesTillTrain);
+
